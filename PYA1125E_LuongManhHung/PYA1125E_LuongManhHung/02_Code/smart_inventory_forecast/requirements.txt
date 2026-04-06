@@ -1,0 +1,6 @@
+odoo==19.0
+pandas
+numpy
+scikit-learn
+joblib
+requests
