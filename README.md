@@ -1,52 +1,156 @@
 # PYA1125E
 ĐỒ ÁN
-Tên đề tài: Xây dựng hệ thống dự báo nhu cầu và tối ưu chuỗi cung ứng trên nền tảng Odoo
 
+##  Xây dựng hệ thống dự báo nhu cầu và tối ưu chuỗi cung ứng trên nền tảng Odoo
+
+---
 Sinh viên thực hiện: Lương Mạnh Hùng
 
----
+## 📁 1. CẤU TRÚC THƯ MỤC
 
-1. MÔ TẢ HỆ THỐNG
+Thư mục nộp bài được tổ chức theo cấu trúc như sau:
 
-Hệ thống được xây dựng nhằm hỗ trợ doanh nghiệp dự báo nhu cầu và tối ưu hóa nhập hàng dựa trên dữ liệu thực tế.
-
-Các chức năng chính:
-
-* Dự báo nhu cầu bằng AI (Nhóm A/B/C)
-* Tính toán số lượng cần nhập dựa trên tồn kho và safety stock
-* Làm tròn số lượng nhập theo quy cách đóng gói
-* Tạo đơn mua hàng (Purchase Order)
-
----
-
-2. CÔNG NGHỆ SỬ DỤNG
-
-* Odoo 19
-* Python
-* Machine Learning (scikit-learn)
-* PostgreSQL
-
----
-
-3. CẤU TRÚC THƯ MỤC
-
-* 1_SourceCode: mã nguồn module Odoo
-* 2_Database: file backup database
-* 3_Report: báo cáo đồ án
-* 4_Slides: slide thuyết trình
-* 5_InstallationGuide: hướng dẫn cài đặt
-* 6_DemoVideo: video demo
+```
+PYA1125E_LuongManhHung/
+│
+├── 01_Cơ sở dữ liệu/
+│   ├── DoAnTN_2026-03-29_13-45-17.zip
+│   └── dataset_banh_mi.csv
+│
+├── 02_Code/
+│   ├── odoo_addons/
+│   │   └── smart_inventory_forecast/
+│   │
+│   ├── ai_training/
+│   │   ├── generate_dataset.py
+│   │   ├── train_model.py
+│   │   └── ai_model_universal.pkl
+│   │
+│   └── requirements.txt
+│
+├── 03_Các tài liệu/
+│   ├── LuongManhHung_Slide thuyết trình.pptx
+│   ├── LuongManhHung_Hướng dẫn cài đặt.pdf
+│   ├── LuongManhHung_Báo cáo.pdf
+│   └── LuongManhHung_Video demo.mp4
+```
 
 ---
 
-4. HƯỚNG DẪN
+## 🗄️ 2. CƠ SỞ DỮ LIỆU
 
-Xem chi tiết trong file:
-5_InstallationGuide/HuongDanCaiDat.docx
+Thư mục **01_Cơ sở dữ liệu** bao gồm:
+
+* `database_dump.sql`: file export database từ Odoo
+* `dataset_banh_mi.csv`: dữ liệu giả lập dùng để train AI
 
 ---
 
-5. GHI CHÚ
+## 💻 3. MÃ NGUỒN
 
-* Hệ thống sử dụng dữ liệu giả lập phù hợp với mô hình cửa hàng bánh mì sinh viên
-* AI được huấn luyện dựa trên dữ liệu thời gian (ngày, tháng, thứ)
+Thư mục **02_Code** bao gồm:
+
+### 🔹 Module Odoo
+
+* `smart_inventory_forecast/`
+* Chứa toàn bộ logic:
+
+  * Dự báo nhu cầu
+  * Tính toán nhập hàng
+  * Tạo đơn mua hàng
+
+---
+
+### 🔹 AI Training
+
+* `generate_dataset.py`: sinh dữ liệu giả lập
+* `train_model.py`: huấn luyện mô hình
+* `ai_model_universal.pkl`: model đã train
+
+---
+
+### 🔹 Thư viện
+
+* `requirements.txt`: danh sách thư viện cần cài
+
+---
+
+## 📊 4. TÀI LIỆU
+
+Thư mục **03_Các tài liệu** gồm:
+
+* Slide thuyết trình
+* Hướng dẫn cài đặt
+* Báo cáo đồ án
+* Video demo hệ thống
+
+---
+
+## ⚙️ 5. HƯỚNG DẪN CHẠY HỆ THỐNG
+
+### Bước 1: Cài đặt môi trường
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### Bước 2: Khởi động Odoo
+
+* Cài đặt Odoo 19
+* Thêm module vào addons path
+* Update module
+
+---
+
+### Bước 3: Load database
+
+* Import file `DoAnTN_2026-03-29_13-45-17.zip`
+
+---
+
+### Bước 4: Sử dụng hệ thống
+
+* Vào menu: AI Forecast
+* Tạo dự báo
+* Chạy AI
+* Tạo đơn mua hàng
+
+---
+
+## 🤖 6. MÔ HÌNH AI
+
+* Thuật toán: Decision Tree
+* Input:
+
+  * Thứ
+  * Tháng
+  * Cuối tuần
+* Output:
+
+  * Nhóm nhu cầu A/B/C
+
+Model được lưu tại:
+
+```
+ai_model_universal.pkl
+```
+
+---
+
+## 🎯 7. CHỨC NĂNG CHÍNH
+
+* Dự báo nhu cầu bằng AI
+* Tính toán số lượng cần nhập
+* Kiểm tra tồn kho thực tế
+* Làm tròn theo quy cách đóng gói
+* Tự động tạo đơn mua hàng
+
+---
+
+## ⚠️ 8. LƯU Ý
+
+* Dữ liệu sử dụng là dữ liệu giả lập
+* Hệ thống chưa tích hợp POS
+* AI chỉ phân loại (không dự báo số lượng cụ thể)
